@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dez</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+      html,
+      body {
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        width: 100%; /* Make sure it takes up the full width */
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+      }
+
+      .section {
+        padding-top: 2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align items to the left */
+        padding: 5px 10px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        background-color: #ece6f0;
+      }
+
+      .header img {
+        height: 90px; /* Increase the height of the logo */
+        width: 90px; /* Increase the width of the logo */
+        margin-left: 30px; /* Move the logo more to the left */
+        margin-right: 5px;
+        /* Reduce space between logo and title */
+      }
+
+      .header-title {
+        font-size: 26px; /* Slightly increase font size */
+        font-weight: 900; /* Increase boldness */
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        line-height: 40px;
+        position: relative;
+        top: 10px;
+        right: 15px;
+        font-family: "EditorialNewBold", serif;
+        letter-spacing: -0.5px;
+      }
+
+      #categories {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding-top: 10px;
+        margin-top: 20px;
+        width: 100%;
+        padding: 0 20px;
+        /* Add padding to the left and right */
+        box-sizing: border-box;
+      }
+
+      .category {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0px 20px; /* Padding left and right, if you want no padding, set to 0 */
+        box-sizing: border-box;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        padding-left: 0px;
+        height: 40px;
+      }
+
+      .category-label {
+        flex-grow: 1;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+        margin-right: 10px; /* Small margin to space from toggle */
+        font-size: 12px; /* Smaller font size */
+        white-space: nowrap; /* Prevent text from wrapping to the next line */
+        overflow: hidden; /* Hide any overflow text */
+        text-overflow: ellipsis; /* Add ellipsis (...) to overflowed text */
+        max-width: 150px; /* Set a maximum width for the label */
+      }
+
+      .toggle-button {
+        background-color: #6d52a9;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      .toggle-button.is-selected {
+        background-color: #3273dc;
+      }
+
+      .textarea-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      #start-blocking {
+        width: 100%;
+        /* Make the button smaller */
+        max-width: 90%;
+        /* Set a maximum width */
+        margin: 5px auto;
+        /* Center the button and add some margin */
+        display: block;
+        /* Ensure it's centered */
+
+        font-size: 14px;
+        /* Adjust the font size */
+        text-align: center;
+        /* Center the text within the button */
+        color: white;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        background-color: #6d52a9;
+        transition: background-color 0.3s ease;
+        padding: 12px 10px 10px 10px;
+      }
+
+      #start-blocking:hover {
+        background-color: #594088; /* Slightly darker shade for hover effect */
+      }
+
+      #additionalUsernames {
+        height: 100px;
+        /* Fixed height */
+        font-size: 12px;
+        width: 100%;
+        /* Full width */
+        max-width: 90%;
+        /* Maximum width */
+        box-sizing: border-box;
+        padding: 5px 10px;
+        resize: none;
+        /* Disable manual resizing */
+        outline: none;
+        /* Remove outline */
+        overflow-y: auto;
+        /* Enable vertical scrollbar when needed */
+        border: 1px solid #ccc;
+        /* Optional: Add a subtle border */
+        border-radius: 4px;
+        /* Optional: Add rounded corners */
+        margin: 0;
+      }
+
+      .textarea-undertext {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin: 5px auto;
+      }
+
+      /* Override the default Bulma textarea styling */
+      .textarea {
+        min-width: unset;
+        /* Remove any minimum width constraint */
+        display: block;
+        box-sizing: border-box;
+        /* Include padding and borders in the width */
+      }
+
+      .footer {
+        margin-top: 10px;
+        padding-top: 15px;
+        margin-bottom: 8px;
+        padding-bottom: 15px;
+        font-size: 12px;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal-content .subtitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .modal-content .content {
+        overflow-y: auto;
+        flex-grow: 1;
+        height: 70vh;
+      }
+
+      .rounded {
+        margin-top: 0px;
+        padding-top: 0px;
+        margin-bottom: 15px;
+        padding-bottom: 1px;
+      }
+
+      .subtitle {
+        font-weight: 900;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #e0e0e0;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 28px;
+        /* Uniform width */
+        height: 16px;
+        /* Uniform height */
+        margin-left: auto;
+        /* Align to the right */
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 20px;
+        /* Adjusted to match the smaller size */
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 10px;
+        /* Smaller circle */
+        width: 10px;
+        /* Smaller circle */
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #6d52a9;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(12px);
+        /* Adjusted for the smaller width */
+      }
+      /* Disable text selection on the entire page */
+      body,
+      .category-label,
+      .header-title,
+      .help,
+      .info-button,
+      .button,
+      .slider {
+        user-select: none;
+        -webkit-user-select: none;
+        /* Safari */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+      }
+
+      .icon-svg {
+        width: 24px;
+        /* Adjust size as needed */
+        height: 24px;
+        vertical-align: middle;
+        cursor: pointer;
+        /* Ensures it looks clickable */
+      }
+
+      .settings-button {
+        position: absolute; /* Position it relative to the .header */
+        top: 2px;
+        right: -10px; /* Align to the right */
+        background-color: transparent; /* Remove background */
+        border: none; /* Remove borders */
+        cursor: pointer; /* Make it look clickable */
+        transition: transform 1s ease-in-out, filter 0.3s ease;
+        /* Smooth rotation and color transition */
+      }
+
+      .settings-button img {
+        width: 24px; /* Adjust size as needed */
+        height: 24px;
+        vertical-align: middle;
+        transform-origin: center center; /* Ensure rotation is centered */
+      }
+
+      .settings-button:hover img {
+        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+        filter: invert(24%) sepia(47%) saturate(1478%) hue-rotate(225deg)
+          brightness(91%) contrast(92%); /* Purple color */
+      }
+
+      .info-button {
+        background-color: transparent; /* Remove background */
+        border: none; /* Remove borders */
+        padding: 5px 10px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align to the left */
+        cursor: pointer;
+        appearance: none; /* Reset the button's appearance */
+        -webkit-appearance: none; /* Reset the button's appearance for Safari */
+      }
+
+      .info-button img,
+      .info-button svg {
+        width: 20px; /* Adjust the size of the icon */
+        height: 20px;
+        vertical-align: middle;
+        margin-top: 5px; /* Move the icon 5 pixels down */
+        transition: transform 0.3s ease; /* Smooth transition for hover effect */
+      }
+
+      .info-button:hover img,
+      .info-button:hover svg {
+        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+        filter: invert(24%) sepia(47%) saturate(1478%) hue-rotate(225deg)
+          brightness(91%) contrast(92%); /* Purple color */
+      }
+
+      @font-face {
+        font-family: "EditorialNewBold";
+        src: url("fonts/EDITORIALNEW-BOLD.OTF") format("opentype");
+        font-weight: bold;
+        font-style: normal;
+      }
+    </style>
+  </head>
+
+  <body class="section">
+    <div class="header" style="margin-top: 0">
+      <img src="icons/icon.svg" alt="Logo" class="icon-svg" />
+      <!-- Replace with your logo path -->
+      <h1 class="header-title">dezenfektan</h1>
+      <button class="settings-button">
+        <img src="icons/settings.svg" alt="Settings" class="icon-svg" />
+      </button>
+    </div>
+
+    <div id="categories" class="content">
+      <!-- Example of a category row -->
+      <div class="category">
+        <button class="info-button">ℹ️</button>
+        <span class="category-label">Category Name</span>
+        <label class="switch">
+          <input type="checkbox" class="toggle-checkbox" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <!-- Add more categories as needed -->
+    </div>
+
+    <div class="textarea-container">
+      <textarea
+        id="additionalUsernames"
+        class="textarea is-info"
+        placeholder="Add usernames here..."
+      ></textarea>
+    </div>
+
+    <div class="textarea-undertext">
+      <p
+        class="help is-gray"
+        style="text-align: center; color: rgb(180, 180, 180); font-size: 9px"
+      >
+        Ek olarak bloklamak istediğiniz kullanıcı adlarını buraya aralarına
+        virgül koyarak ekleyin.
+      </p>
+    </div>
+
+    <button
+      id="start-blocking"
+      class="button is-primary is-fullwidth is-flex is-align-items-center is-justify-content-center"
+      style="background-color: #6d52a9; color: white"
+    >
+      <span>ᐅ Bloklamaya Başla</span>
+    </button>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content box">
+        <div class="subtitle">
+          <h2>Ayarlar</h2>
+          <button id="closeSettings" class="delete"></button>
+        </div>
+        <hr class="rounded" />
+        <div class="content">
+          <div class="field">
+            <label class="label">Blok gecikme süresi (saniye):</label>
+            <div class="control">
+              <input
+                id="waitTime"
+                class="input"
+                type="number"
+                min="0"
+                value="1"
+                placeholder="Saniye olarak Girin"
+              />
+            </div>
+            <p class="help">
+              Bloklanan her kullanıcı arasında, girilen süre kadar beklenir. Bu
+              sayede Twitter'ın sizi spam olarak algılamasının önüne geçilir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoPopup" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content box">
+        <div class="subtitle">
+          <h2>Kategori Bilgileri</h2>
+          <button id="closeInfo" class="delete"></button>
+        </div>
+        <hr class="rounded" />
+        <div class="content">
+          <p id="infoText">
+            Information about the categories will appear here.
+          </p>
+          <!-- New user buttons container -->
+          <div id="userButtons" class="user-buttons-container">
+            <!-- User buttons will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
