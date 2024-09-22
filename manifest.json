@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Dezenfektan",
+  "name": "Twitter Blocker",
   "version": "1.0",
   "description": "Blocks a list of users on Twitter sequentially.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "background": {
     "service_worker": "background.js"
   },
-  "host_permissions": ["*://*/*"],
+  "host_permissions": ["https://x.com/*"],  // Specify the site explicitly
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
