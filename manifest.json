@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Twitter Blocker",
+  "name": "Dezenfektan Blocker",
   "version": "1.0",
   "description": "Blocks a list of users on Twitter sequentially.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
