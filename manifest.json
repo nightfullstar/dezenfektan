@@ -7,7 +7,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "host_permissions": ["https://x.com/*"],  // Specify the site explicitly
+  "host_permissions": ["https://x.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
