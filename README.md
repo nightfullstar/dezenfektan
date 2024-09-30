@@ -35,4 +35,4 @@ Dezenfektan, sosyal medya platformu X'in (Twitter) doğru bilgiye ulaşılabilen
 
 Dezenfektan hiçbir kurum, kuruluş, parti, organizasyon veya ideolojiye bağlı değildir. 
 
-Daha fazla bilgi için [sitemizi] (https://sites.google.com/view/dezenfektan/home) veya [X (Twitter) hesabımızı](https://x.com/dezen_fektan) ziyaret edebilirsiniz.
+Daha fazla bilgi için [sitemizi](https://sites.google.com/view/dezenfektan/home) veya [X (Twitter) hesabımızı](https://x.com/dezen_fektan) ziyaret edebilirsiniz.
