@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Twitter Blocker",
-  "version": "1.0",
-  "description": "Blocks a list of users on Twitter sequentially.",
-  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "version": "1.1",
+  "description": "An extension that blocks curated lists of manipulative troll and bot accounts on X (Twitter).",
+  "permissions": ["activeTab", "scripting", "storage"],
   "background": {
     "service_worker": "background.js"
   },
