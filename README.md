@@ -1,6 +1,6 @@
 ![](./icons/banner.jpg)
 
-# Dezenfektan Twitter Blocker
+# [Dezenfektan](https://sites.google.com/view/dezenfektan/home) Twitter Blocker
 Dezenfektan Twitter Blocker, Twitter'daki polarize edici ve yanlış bilgi yayan hesapları engelleyerek platformu temizlemeyi kolaylaştırmayı amaçlayan bir Chrome uzantısıdır. 
 Bu uzantı sayesinde, şeffaf olarak listelediğimiz kötü amaçlı kullanıcıları kolayca engelleyebilir ve sosyal medya deneyiminizi daha sağlıklı bir hale getirebilirsiniz.
 
