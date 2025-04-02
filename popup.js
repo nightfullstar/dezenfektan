@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start blocking selected users
   startBlockingButton.addEventListener("click", () => {
     chrome.storage.local.get(["waitTime"], (result) => {
-      const waitTime = result.waitTime || 1000; // Default to 1 second if not specified
+      const waitTime = result.waitTime || 2000; // Default to 2 second if not specified
 
       // Add additional usernames from the text area
       const additionalUsernames = document
